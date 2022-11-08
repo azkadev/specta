@@ -39,6 +39,7 @@ jobs:
       # Compile specta app
       - name: Compile Application For Desktop 
         run: |
+          cd specta_app
           flutter pub get
           flutter_distributor package --platform windows --targets msix
         shell: bash
