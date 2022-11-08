@@ -78,7 +78,10 @@ jobs:
           flutter config --enable-windows-desktop
           flutter config --enable-android
           flutter config --enable-ios
-          
+      - name: set Flutter Distribute
+        continue-on-error: true
+        run: dart pub global activate flutter_distributor
+
       # Compile specta app
       - name: Compile Application For Desktop
         continue-on-error: true
@@ -86,7 +89,8 @@ jobs:
           cd specta_app
           flutter pub get
           if [ "$RUNNER_OS" == "Linux" ]; then
-            flutter build linux --release
+            flutter_distributor package --platform linux --targets deb
+            mv dist/*/*.deb ../build/
           fi
           if [ "$RUNNER_OS" == "Windows" ]; then
             flutter build windows --release
