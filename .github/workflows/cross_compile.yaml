@@ -71,18 +71,29 @@ jobs:
           cd specta_userbot_telegram
           dart pub get
           dart compile exe bin/specta_userbot_telegram.dart -o ../build/specta_userbot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
+      - name: Set Flutter enable devices
+        run: |
+          flutter config --enable-web
+          flutter config --enable-linux-desktop
+          flutter config --enable-macos-desktop
+          flutter config --enable-windows-desktop
+          flutter config --enable-android
+          flutter config --enable-ios
       - name: Compile Application
+        continue-on-error: true
         run:  |
           cd specta_app
           flutter pub get
           if [ "$RUNNER_OS" == "Linux" ]; then
             echo "ini linux"
+            flutter build linux --release
           fi
           if [ "$RUNNER_OS" == "Windows" ]; then
-            echo "ini windows"
+            flutter build windows --release
           fi
           if [ "$RUNNER_OS" == "macOS" ]; then
-            echo "ini macos"
+            flutter build macos --release
+            flutter build apk --release --split-per-abi
           fi
         shell: bash
       # - name: Install pub Dependencies
