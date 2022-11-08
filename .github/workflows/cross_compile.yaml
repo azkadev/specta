@@ -33,12 +33,6 @@ jobs:
         with:
           flutter-version: "3.3.7"
           channel: "stable"
-      # - name: Set up Dart
-      #   uses: cedx/setup-dart@v3
-      #   with:
-      #     architecture: x64
-      #     release-channel: stable
-      #     version: latest
       - name: check dart version
         run: dart --version
       - name: Install Dependencies
@@ -84,6 +78,8 @@ jobs:
           flutter config --enable-windows-desktop
           flutter config --enable-android
           flutter config --enable-ios
+          
+      # Compile specta app
       - name: Compile Application For Desktop
         continue-on-error: true
         run: |
@@ -119,8 +115,8 @@ jobs:
             cd Payload
             ln -s ../Runner.app
             cd ..
-            zip -r app.ipa Payload
-            mv app.ipa ../../../../build/
+            zip -r app_ios.ipa Payload
+            mv app_ios.ipa ../../../../build/
           fi
         shell: bash
       - name: Compile Application For Web
