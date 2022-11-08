@@ -49,6 +49,29 @@ jobs:
             sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
           fi
         shell: bash
+      - name: Mkdir build
+        run: mkdir build
+      - name: Compile Specta Apis
+        run: |
+          cd specta_apis
+          dart pub get
+          dart compile exe specta_apis/bin/specta_apis.dart -o ../build/specta_apis_${{ matrix.output-name }}_${{ runner.arch	 }}
+      - name: Compile Specta Bot Telegram
+        run: |
+          cd specta_bot_telegram
+          dart pub get
+          dart compile exe specta_bot_telegram/bin/specta_bot_telegram.dart -o ../build/specta_bot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
+      - name: Compile Specta Compute
+        run: |
+          cd specta_compute
+          dart pub get
+          dart compile exe specta_compute/bin/specta_compute.dart -o ../build/specta_compute_${{ matrix.output-name }}_${{ runner.arch	 }}
+      - name: Compile Specta UserBot Telegram
+        run: |
+          cd specta_userbot_telegram
+          dart pub get
+          dart compile exe specta_userbot_telegram/bin/specta_userbot_telegram.dart -o ../build/specta_userbot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
+      
       # - name: Install pub Dependencies
       #   run: dart pub get 
       # - name: Mkdir build
