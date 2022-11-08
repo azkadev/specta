@@ -42,7 +42,6 @@ jobs:
           cd specta_app
           flutter pub get
           flutter_distributor package --platform windows --targets msix
-        shell: bash
       - name: Publish artifact
         uses: actions/upload-artifact@v3 
         with:
