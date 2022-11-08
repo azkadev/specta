@@ -21,7 +21,7 @@
 
 # Specta 🔥
 
-> Specta open source project untuk edukasi belajar dan portofolio style code saya:V script murni hasil belajar kalo hasil nyolong saya cantumin di code:V
+> Specta open source project untuk edukasi belajar dan portofolio style code saya:V script murni hasil belajar kalo hasil nyolong saya cantumin di code:V, status belum siap pakai public
 
 [![](https://img.shields.io/badge/specta-v0.0-darkgreen)](#)
 [![Stars](https://img.shields.io/github/stars/azkadev/specta?style=flat-square&color=yellow)](https://github.com/azkadev/specta/stargazers)
