@@ -52,26 +52,31 @@ jobs:
       - name: Mkdir build
         run: mkdir build
       - name: Compile Specta Apis
+        continue-on-error: true
         run: |
           cd specta_apis
           dart pub get
           dart compile exe bin/specta_apis.dart -o ../build/specta_apis_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Compile Specta Bot Telegram
+        continue-on-error: true
         run: |
           cd specta_bot_telegram
           dart pub get
           dart compile exe bin/specta_bot_telegram.dart -o ../build/specta_bot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Compile Specta Compute
+        continue-on-error: true
         run: |
           cd specta_compute
           dart pub get
           dart compile exe bin/specta_compute.dart -o ../build/specta_compute_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Compile Specta UserBot Telegram
+        continue-on-error: true
         run: |
           cd specta_userbot_telegram
           dart pub get
           dart compile exe bin/specta_userbot_telegram.dart -o ../build/specta_userbot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Set Flutter enable devices
+        continue-on-error: true
         run: |
           flutter config --enable-web
           flutter config --enable-linux-desktop
