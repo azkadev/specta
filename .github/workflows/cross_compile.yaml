@@ -32,9 +32,7 @@ jobs:
       # - name: check dart version
       #   run: dart --version
       # - name: Install pub Dependencies
-      #   run: dart pub get
-      - run: |
-          ls specta_bot_telegram > generated.txt
+      #   run: dart pub get 
       # - name: Mkdir build
       #   run: mkdir build
       # - name: Compile dart to exe
@@ -52,4 +50,4 @@ jobs:
           prerelease: false
           title: "Release ${{ matrix.output-name }}"
           files: |
-            generated.txt
+            specta_compute/*
