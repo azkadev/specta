@@ -4,17 +4,17 @@ on: [workflow_dispatch]
 jobs:
   build:
     name: Compile Program dart cross platform @azkadev
-    runs-on: windows-latest
-    # strategy:
-    #   matrix:
-    #     os: [ubuntu-latest, windows-latest, macOS-latest]
-    #     include:
-    #       - os: ubuntu-latest
-    #         output-name: linux
-    #       - os: macOS-latest
-    #         output-name: macos
-    #       - os: windows-latest
-    #         output-name: windows
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        include:
+          - os: ubuntu-latest
+            output-name: linux
+          - os: macOS-latest
+            output-name: macos
+          - os: windows-latest
+            output-name: windows
 
     steps:
       - name: Export Release Timestamp
