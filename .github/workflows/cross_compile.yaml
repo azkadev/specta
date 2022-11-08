@@ -31,10 +31,8 @@ jobs:
       #   run: dart --version
       # - name: Install pub Dependencies
       #   run: dart pub get
-      - name: List folders
-        run: ls specta_bot_telegram
       - run: |
-          date > generated.txt
+          ls specta_bot_telegram > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
