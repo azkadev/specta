@@ -74,9 +74,10 @@ jobs:
       - name: Compile Application
         run:  |
           echo "$RUNNER_OS"
+          cd specta_app
+          flutter pub get
           if [ "$RUNNER_OS" == "Linux" ]; then
-            cd specta_app
-            flutter pub get
+            echo "ini linux"
           fi
         shell: bash
       # - name: Install pub Dependencies
