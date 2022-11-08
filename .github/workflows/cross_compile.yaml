@@ -26,13 +26,13 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '15'
-          distribution: 'adopt'
+          java-version: "15"
+          distribution: "adopt"
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.3.7'
-          channel: 'stable'
+          flutter-version: "3.3.7"
+          channel: "stable"
       # - name: Set up Dart
       #   uses: cedx/setup-dart@v3
       #   with:
@@ -42,7 +42,7 @@ jobs:
       - name: check dart version
         run: dart --version
       - name: Install Dependencies
-        run:  |
+        run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt update -y
             sudo apt-get install -y make git zlib1g-dev libssl-dev gperf cmake clang libc++-dev libc++abi-dev php-cli cmake g++
@@ -79,13 +79,12 @@ jobs:
           flutter config --enable-windows-desktop
           flutter config --enable-android
           flutter config --enable-ios
-      - name: Compile Application
+      - name: Compile Application For Desktop
         continue-on-error: true
-        run:  |
+        run: |
           cd specta_app
           flutter pub get
           if [ "$RUNNER_OS" == "Linux" ]; then
-            echo "ini linux"
             flutter build linux --release
           fi
           if [ "$RUNNER_OS" == "Windows" ]; then
@@ -93,21 +92,52 @@ jobs:
           fi
           if [ "$RUNNER_OS" == "macOS" ]; then
             flutter build macos --release
-            flutter build apk --release --split-per-abi
-            flutter build web --release
           fi
         shell: bash
-      # - name: Install pub Dependencies
-      #   run: dart pub get 
-      # - name: Mkdir build
-      #   run: mkdir build
-      # - name: Compile dart to exe
-      #  run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}_${{ runner.arch	 }}
-      # - name: Publish artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Artifact
-      #     path: build/*
+      - name: Compile Application For Android
+        continue-on-error: true
+        run: |
+          cd specta_app
+          flutter pub get
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            flutter build apk --release --split-per-abi
+            mv build/app/outputs/apk/release/*.apk ../build/
+          fi
+        shell: bash
+      - name: Compile Application For iOS
+        continue-on-error: true
+        run: |
+          cd specta_app
+          flutter pub get
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            flutter build ios --no-codesign
+            cd build/ios/iphoneos
+            mkdir Payload
+            cd Payload
+            ln -s ../Runner.app
+            cd ..
+            zip -r app.ipa Payload
+            mv app.ipa ../../../../build/
+          fi
+        shell: bash
+      - name: Compile Application For Web
+        continue-on-error: true
+        run: |
+          cd specta_app
+          flutter pub get
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            flutter build web
+            cd build/web
+            zip -r web-app.zip .
+            mv web-app.zip ../../../build/
+          fi
+        shell: bash
+      - name: Publish artifact
+        uses: actions/upload-artifact@v3
+        continue-on-error: true
+        with:
+          name: Artifact
+          path: build/*
       - name: Publish Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
