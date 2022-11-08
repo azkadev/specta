@@ -33,10 +33,17 @@ jobs:
       #   run: dart pub get
       - name: List folders
         run: ls specta_bot_telegram
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
       # - name: Mkdir build
       #   run: mkdir build
       # - name: Compile dart to exe
-      #   run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}_${{ runner.arch	 }}
+      #  run: dart compile exe ./bin/${{ github.event.repository.name }}.dart -o build/${{ github.event.repository.name }}_${{ matrix.output-name }}_${{ runner.arch	 }}
       # - name: Publish artifact
       #   uses: actions/upload-artifact@v3
       #   with:
