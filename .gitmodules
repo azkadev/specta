@@ -1,18 +1,18 @@
 [submodule "specta_apis"]
     path = specta_apis
-    url = git://github.com/azkadev/specta_apis.git
+    url = https://github.com/azkadev/specta_apis.git
 [submodule "specta_apis_scheme"]
     path = specta_apis_scheme
-    url = git://github.com/azkadev/specta_apis_scheme.git
+    url = https://github.com/azkadev/specta_apis_scheme.git
 [submodule "specta_app"]
     path = specta_app
-    url = git://github.com/azkadev/specta_app.git
+    url = https://github.com/azkadev/specta_app.git
 [submodule "specta_bot_telegram"]
     path = specta_bot_telegram
-    url = git://github.com/azkadev/specta_bot_telegram.git
+    url = https://github.com/azkadev/specta_bot_telegram.git
 [submodule "specta_compute"]
     path = specta_compute
-    url = git://github.com/azkadev/specta_compute.git
+    url = https://github.com/azkadev/specta_compute.git
 [submodule "specta_userbot_telegram"]
     path = specta_userbot_telegram
-    url = git://github.com/azkadev/specta_userbot_telegram.git
+    url = https://github.com/azkadev/specta_userbot_telegram.git
