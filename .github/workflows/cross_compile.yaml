@@ -23,14 +23,32 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: true
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '15'
+          distribution: 'adopt'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.7'
+          channel: 'stable'
       # - name: Set up Dart
       #   uses: cedx/setup-dart@v3
       #   with:
       #     architecture: x64
       #     release-channel: stable
       #     version: latest
-      # - name: check dart version
-      #   run: dart --version
+      - name: check dart version
+        run: dart --version
+      - name: Install Dependencies
+        run:  |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt update -y
+            sudo apt-get install -y make git zlib1g-dev libssl-dev gperf cmake clang libc++-dev libc++abi-dev php-cli cmake g++
+            sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+          fi
+        shell: bash
       # - name: Install pub Dependencies
       #   run: dart pub get 
       # - name: Mkdir build
