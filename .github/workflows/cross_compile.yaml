@@ -32,7 +32,9 @@ jobs:
       # - name: Install pub Dependencies
       #   run: dart pub get
       - name: List folders
-        run: ls
+        run: |
+          cd specta_bot_telegram
+          ls
       # - name: Mkdir build
       #   run: mkdir build
       # - name: Compile dart to exe
