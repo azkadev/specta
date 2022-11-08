@@ -98,4 +98,4 @@ jobs:
           prerelease: false
           title: "Release ${{ matrix.output-name }}"
           files: |
-            specta_compute/*
+            build/*
