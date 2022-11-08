@@ -21,10 +21,8 @@ jobs:
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: checkout submodule
-        run: |
-          git submodule init
-          git submodule update
+        with:
+          submodules: true
       # - name: Set up Dart
       #   uses: cedx/setup-dart@v3
       #   with:
