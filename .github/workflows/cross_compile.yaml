@@ -21,14 +21,14 @@ jobs:
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Set up Dart
-        uses: cedx/setup-dart@v3
-        with:
-          architecture: x64
-          release-channel: stable
-          version: latest
-      - name: check dart version
-        run: dart --version
+      # - name: Set up Dart
+      #   uses: cedx/setup-dart@v3
+      #   with:
+      #     architecture: x64
+      #     release-channel: stable
+      #     version: latest
+      # - name: check dart version
+      #   run: dart --version
       # - name: Install pub Dependencies
       #   run: dart pub get
       - name: List folders
