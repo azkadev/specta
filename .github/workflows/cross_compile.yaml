@@ -98,7 +98,7 @@ jobs:
             mv dist/*/*.deb ../build/
           fi
           if [ "$RUNNER_OS" == "Windows" ]; then
-            dart pub global flutter_distributor package --platform windows --targets msix
+            dart pub global run flutter_distributor package --platform windows --targets msix
             mv dist/*/*.msix ../build/
           fi
           if [ "$RUNNER_OS" == "macOS" ]; then 
