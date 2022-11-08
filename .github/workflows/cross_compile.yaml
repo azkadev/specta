@@ -20,7 +20,7 @@ jobs:
       - name: Export Release Timestamp
         run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       # - name: Set up Dart
       #   uses: cedx/setup-dart@v3
       #   with:
