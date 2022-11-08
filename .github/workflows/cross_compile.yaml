@@ -73,7 +73,7 @@ jobs:
           dart compile exe bin/specta_userbot_telegram.dart -o ../build/specta_userbot_telegram_${{ matrix.output-name }}_${{ runner.arch	 }}
       - name: Compile Application
         run:  |
-          echo "$RUNNER_OS"
+          echo $RUNNER_OS
           cd specta_app
           flutter pub get
           if [ "$RUNNER_OS" == "Linux" ]; then
