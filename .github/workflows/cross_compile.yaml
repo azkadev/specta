@@ -97,8 +97,7 @@ jobs:
       - name: Compile Application For Android
         continue-on-error: true
         run: |
-          cd specta_app
-          flutter pub get
+          cd specta_app 
           if [ "$RUNNER_OS" == "macOS" ]; then
             flutter build apk --release --split-per-abi
             mv build/app/outputs/apk/release/*.apk ../build/
@@ -108,7 +107,6 @@ jobs:
         continue-on-error: true
         run: |
           cd specta_app
-          flutter pub get
           if [ "$RUNNER_OS" == "macOS" ]; then
             flutter build ios --no-codesign
             cd build/ios/iphoneos
@@ -124,7 +122,6 @@ jobs:
         continue-on-error: true
         run: |
           cd specta_app
-          flutter pub get
           if [ "$RUNNER_OS" == "macOS" ]; then
             flutter build web
             cd build/web
