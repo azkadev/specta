@@ -29,9 +29,9 @@ jobs:
           version: latest
       - name: check dart version
         run: dart --version
-      - name: Install pub Dependencies
-        run: dart pub get
-      - name: Mkdir build
+      # - name: Install pub Dependencies
+      #   run: dart pub get
+      - name: List folders
         run: ls
       # - name: Mkdir build
       #   run: mkdir build
