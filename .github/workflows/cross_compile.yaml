@@ -94,6 +94,7 @@ jobs:
           if [ "$RUNNER_OS" == "macOS" ]; then
             flutter build macos --release
             flutter build apk --release --split-per-abi
+            flutter build web --release
           fi
         shell: bash
       # - name: Install pub Dependencies
