@@ -4,17 +4,17 @@ on: [workflow_dispatch]
 jobs:
   build:
     name: Compile Program dart cross platform @azkadev
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        include:
-          - os: ubuntu-latest
-            output-name: linux
-          - os: macOS-latest
-            output-name: macos
-          - os: windows-latest
-            output-name: windows
+    runs-on: windows-latest
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest, windows-latest, macOS-latest]
+    #     include:
+    #       - os: ubuntu-latest
+    #         output-name: linux
+    #       - os: macOS-latest
+    #         output-name: macos
+    #       - os: windows-latest
+    #         output-name: windows
 
     steps:
       - name: Export Release Timestamp
@@ -98,7 +98,7 @@ jobs:
             mv dist/*/*.deb ../build/
           fi
           if [ "$RUNNER_OS" == "Windows" ]; then
-            dart pub global run flutter_distributor package --platform windows --targets msix
+            flutter_distributor package --platform windows --targets msix
             mv dist/*/*.msix ../build/
           fi
           if [ "$RUNNER_OS" == "macOS" ]; then 
